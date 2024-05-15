@@ -22,6 +22,8 @@ import { ITEMS } from '@/constants'
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
+import SignUp from '@/app/(auth)/sign-up/page'
+import { useRouter } from 'next/navigation'
 
 // // check if the user input correctly and fully or not
 // const formSchema = z.object({
@@ -33,6 +35,7 @@ import { Loader2 } from 'lucide-react'
 const AuthForm = ({type}: {type: string}) => {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     // submit form dựa trên type, nếu type === 'đăng nhập' hay nếu type === 'đăng kí'
     const formSubmitSchema = authFormSchema(type);
@@ -47,12 +50,34 @@ const AuthForm = ({type}: {type: string}) => {
     })
     
     // 2. Define a submit handler. KHI SUBMIT FORM SIGN_IN_UP THÌ SẼ CHẠY FUNCTION NÀY
-    function onSubmit(values: z.infer<typeof formSubmitSchema>) {
+    const onSubmit = async (data: z.infer<typeof formSubmitSchema>) => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         setIsLoading(true) // while submiting, set isloading
-        console.log(values)
-        setIsLoading(false); // After done submiting
+        try{
+            // becuz this is a asynchronise behaviour so I use try-catch
+            // Sign up with Appwrite & create plaid token
+            if (type === 'sign-up'){
+                // const newUser = await signUp(data);
+                // setUser(newUser);
+            }
+            if (type === 'sign-in'){
+                // const response = await signIn({
+                //     email: data.email,
+                //     password: data.password,
+                // });
+                // // if we get a response back, then process to the homepage of that person
+                // if(response){
+                //     router.push('/')
+                // }
+            }
+        }catch(err){
+            console.log(err)
+        } finally{
+            // turn off the loading after finished the asynchronise task
+            // After done submiting or whatever
+            setIsLoading(false);
+        }
     }
 
   return (
