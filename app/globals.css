@@ -45,7 +45,7 @@
 
 @layer utilities {
   .input-class {
-    @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
+    @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-400;
   }
 
   .sheet-content button {
@@ -284,7 +284,7 @@
   }
 
   .form-label {
-    @apply text-14 w-full max-w-[280px] font-medium text-gray-700;
+    @apply text-[17px] w-full max-w-[280px] font-medium text-gray-700;
   }
 
   .form-message {
@@ -292,11 +292,11 @@
   }
 
   .form-btn {
-    @apply text-16 rounded-lg border border-bankGradient bg-bank-gradient font-semibold text-white shadow-form;
+    @apply text-16 rounded-lg border border-bankGradient bg-bankGreen-gradient font-semibold text-white shadow-form py-5;
   }
 
   .form-link {
-    @apply text-14 cursor-pointer font-medium text-bankGradient;
+    @apply text-14 cursor-pointer font-medium text-green-500;
   }
 
   /* Payment Transfer */

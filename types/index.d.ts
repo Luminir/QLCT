@@ -326,3 +326,11 @@ declare interface getBankProps {
 declare interface getBankByAccountIdProps {
   accountId: string;
 }
+
+declare interface CustomInput_test{
+  form: Form;
+  name: string;
+  label: string;
+  placeholder: string;
+  type: string;
+}
