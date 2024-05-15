@@ -6,17 +6,17 @@ export const sidebarLinks = [
   },
   {
     imgURL: "/icons/dollar-circle.svg",
-    route: "/my-banks",
+    route: "/tai-khoan-cua-toi",
     label: "Tài khoản của tôi",
   },
   {
     imgURL: "/icons/transaction.svg",
-    route: "/transaction-history",
+    route: "/lich-su-giao-dich",
     label: "Lịch sử giao dịch",
   },
   {
     imgURL: "/icons/money-send.svg",
-    route: "/payment-transfer",
+    route: "/chuyen-tien",
     label: "Chuyển tiền",
   },
 ];
