@@ -13,7 +13,7 @@ const DoughnutChart = ({ accounts }: DoughnutChartProps) => {
         datasets: [
             {
                 label: "Banks",
-                data: [1250, 2500, 3750], // số tiền của các ngân hàng mà bạn connect, ngân hàng 1, 2, 3 tương ứng với 1250, 2500, 3750
+                data: [100000, 300000, 600000], // số tiền của các ngân hàng mà bạn connect, ngân hàng 1, 2, 3 tương ứng với 1250, 2500, 3750
                 backgroundColor: ['#006c00','#00bb00','#1eff1e'],
             }
         ],

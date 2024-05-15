@@ -41,3 +41,4 @@ npm install query-string
 npm install react-countup
  npm install chart.js
  npm i react-chartjs-2
+ npx shadcn-ui@latest add sheet
