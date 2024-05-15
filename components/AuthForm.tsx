@@ -22,7 +22,7 @@ import { ITEMS } from '@/constants'
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
-import SignUp from '@/app/(auth)/sign-up/page'
+import SignUp from '@/app/(auth)/dang-ky/page'
 import { useRouter } from 'next/navigation'
 
 // // check if the user input correctly and fully or not
