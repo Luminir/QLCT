@@ -6,9 +6,10 @@ import { cookies } from "next/headers";
 import { parseStringify } from "../utils";
 
 export const signUp = async (userDat: SignUpParams) =>{
+  // destructing SignUpParams
+  const { email, password, firstName, lastName } = userDat;
     try {
-        // destructing SignUpParams
-        const { email, password, firstName, lastName } = userDat;
+        // Create a user account
         // Mutation / DB/ Fetch
         //  This method takes the email and password as arguments and returns a session object. We then set the session secret in a cookie (and redirect the user to the account page).
         const { account } = await createAdminClient();
@@ -35,7 +36,7 @@ export const signUp = async (userDat: SignUpParams) =>{
 
 export const signIn = async () =>{
     try {
-        // Create a user account
+        // take out the user DB
     } catch (err) {
         console.log("Error ", err);
     }
