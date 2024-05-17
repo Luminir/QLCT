@@ -205,7 +205,7 @@ export const authFormSchema = (type: string) => z.object({
   // check type để không hiển thị, và 'đăng nhập' thay vì 'đăng kí'
   firstName: type === 'sign-in' ? z.string().optional() : z.string().min(1, {message: "Tên không hợp lệ"}),
   lastName: type === 'sign-in' ? z.string().optional() : z.string().min(1, {message: "Tên không hợp lệ"}),
-  address: type === 'sign-in' ? z.string().optional() : z.string().min(5, {message: "Chưa đủ thông tin"}).max(70, {message: "Tới giới hạn số kí tự"}),
+  address1: type === 'sign-in' ? z.string().optional() : z.string().min(5, {message: "Chưa đủ thông tin"}).max(70, {message: "Tới giới hạn số kí tự"}),
   city: type === 'sign-in' ? z.string().optional() : z.string().min(2, {message: "không hợp lệ"}).max(21, {message: "Tới giới hạn số kí tự"}),
   dob: type === 'sign-in' ? z.string().optional() : z.string().min(4, {message: "Chưa đủ thông tin"}).regex(/^\d{2}-\d{2}-\d{4}$/, {message: "Ngày sinh phải theo định dạng DD-MM-YYYY"}),
   CIN: type === 'sign-in' ? z.string().optional() : z.string().min(12, {message: "Căn cước công dân có 12 kí tự"}).max(12, {message: "Căn cước công dân có 12 kí tự"}).regex(/^\d{12}$/, {message: "Căn cước công dân phải là số"}), // Citizen Identification Number

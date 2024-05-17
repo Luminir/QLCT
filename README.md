@@ -46,3 +46,7 @@ npm install chart.js
 npm i react-chartjs-2
 
 npx shadcn-ui@latest add sheet
+
+npx shadcn-ui@latest add form
+
+npx shadcn-ui@latest add form button input

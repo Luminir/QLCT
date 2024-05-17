@@ -24,6 +24,7 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import SignUp from '@/app/(auth)/dang-ky/page'
 import { useRouter } from 'next/navigation'
+import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 
 // // check if the user input correctly and fully or not
 // const formSchema = z.object({
@@ -35,7 +36,7 @@ import { useRouter } from 'next/navigation'
 const AuthForm = ({type}: {type: string}) => {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter();
+    const router = useRouter(); // use the current route
 
     // submit form dựa trên type, nếu type === 'đăng nhập' hay nếu type === 'đăng kí'
     const formSubmitSchema = authFormSchema(type);
@@ -58,8 +59,8 @@ const AuthForm = ({type}: {type: string}) => {
             // becuz this is a asynchronise behaviour so I use try-catch
             // Sign up with Appwrite & create plaid token
             if (type === 'sign-up'){
-                // const newUser = await signUp(data);
-                // setUser(newUser);
+                const newUser = await signUp(data);
+                setUser(newUser);
             }
             if (type === 'sign-in'){
                 // const response = await signIn({
@@ -121,7 +122,7 @@ const AuthForm = ({type}: {type: string}) => {
                         <CustomInput control={form.control} name="firstName" label="Tên Gọi" placeholder='Nhập Tên gọi của bạn' type='text'/> 
                         <CustomInput control={form.control} name="lastName" label="Tên Họ" placeholder='Nhập Tên họ của bạn' type='text'/>
                         </div>
-                        <CustomInput control={form.control} name="address" label="Địa Chỉ" placeholder='Nhập địa chỉ của bạn' type='text'/>
+                        <CustomInput control={form.control} name="address1" label="Địa Chỉ" placeholder='Nhập địa chỉ của bạn' type='text'/>
                         <CustomInput control={form.control} name="city" label="Tỉnh/Thành Phố" placeholder='Ví dụ: Hà Nội' type='text'/>
                         {/* <CustomInput control={form.control} name="postalCode" label="Mã bưu chính" placeholder='Ví dụ: 11101' type='number'/> */}
                         <CustomInput control={form.control} name="dob" label="Ngày-tháng-năm sinh" placeholder='ngày-tháng-năm' type='text'/>
