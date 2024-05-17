@@ -22,7 +22,7 @@ import { ITEMS } from '@/constants'
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
-import SignUp from '@/app/(auth)/dang-ky/page'
+import SignUp from '@/app/(auth)/dang-ki/page'
 import { useRouter } from 'next/navigation'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 
@@ -63,14 +63,14 @@ const AuthForm = ({type}: {type: string}) => {
                 setUser(newUser);
             }
             if (type === 'sign-in'){
-                // const response = await signIn({
-                //     email: data.email,
-                //     password: data.password,
-                // });
-                // // if we get a response back, then process to the homepage of that person
-                // if(response){
-                //     router.push('/')
-                // }
+                const response = await signIn({
+                    email: data.email,
+                    password: data.password,
+                });
+                // if we get a response back: means there is a user existed in DB, then process to the homepage of that person
+                if(response){
+                    router.push('/')
+                }
             }
         }catch(err){
             console.log(err)

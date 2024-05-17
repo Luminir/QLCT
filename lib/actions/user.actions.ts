@@ -10,7 +10,6 @@ export const signUp = async (userDat: SignUpParams) =>{
   const { email, password, firstName, lastName } = userDat;
     try {
         // Create a user account
-        // Mutation / DB/ Fetch
         //  This method takes the email and password as arguments and returns a session object. We then set the session secret in a cookie (and redirect the user to the account page).
         const { account } = await createAdminClient();
 
@@ -34,9 +33,15 @@ export const signUp = async (userDat: SignUpParams) =>{
     }
 }
 
-export const signIn = async () =>{
+export const signIn = async ({email, password}: signInProps) =>{
     try {
-        // take out the user DB
+        // Mutation / DB/ Fetch
+        const { account } = await createAdminClient();
+
+        // take the email and password from sign-in AuthForm, fetch here to excute to take out user's data
+        const response = await account.createEmailPasswordSession(email, password);
+        
+        return parseStringify(response);
     } catch (err) {
         console.log("Error ", err);
     }
