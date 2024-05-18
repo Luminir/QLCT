@@ -16,11 +16,9 @@ export async function createSessionClient() {
 
   client.setSession(session.value);
 
-  return {
-    get account() {
-      return new Account(client);
-    },
-  };
+  const account = new Account(client);
+
+  return { account };
 }
 
 export async function createAdminClient() {
