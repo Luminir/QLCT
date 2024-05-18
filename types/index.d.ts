@@ -35,10 +35,10 @@ declare type User = {
   lastName: string;
   address1: string;
   city: string;
-  state: string;
-  postalCode: string;
+  // state: string;
+  // postalCode: string;
   dateOfBirth: string;
-  ssn: string;
+  cin: string;
 };
 
 declare type NewUserParams = {
