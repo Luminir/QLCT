@@ -150,7 +150,7 @@ const AuthForm = ({type}: {type: string}) => {
                     <p className='text-14 font-normal text-gray-500'>
                         {type === 'sign-in'? "Không có tài khoản?" : "Đã có tài khoản?"}
                     </p>
-                    <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'} className='form-link'>{type === 'sign-in' ? 'Đăng kí' : 'Đăng nhập'}</Link>
+                    <Link href={type === 'sign-in' ? '/dang-ki' : '/dang-nhap'} className='form-link'>{type === 'sign-in' ? 'Đăng kí' : 'Đăng nhập'}</Link>
                 </footer>
             </>
         )}
