@@ -125,8 +125,8 @@ const AuthForm = ({type}: {type: string}) => {
                         <CustomInput control={form.control} name="address1" label="Địa Chỉ" placeholder='Nhập địa chỉ của bạn' type='text'/>
                         <CustomInput control={form.control} name="city" label="Tỉnh/Thành Phố" placeholder='Ví dụ: Hà Nội' type='text'/>
                         {/* <CustomInput control={form.control} name="postalCode" label="Mã bưu chính" placeholder='Ví dụ: 11101' type='number'/> */}
-                        <CustomInput control={form.control} name="dob" label="Ngày-tháng-năm sinh" placeholder='ngày-tháng-năm' type='text'/>
-                        <CustomInput control={form.control} name="CIN" label="Căn cước công dân" placeholder='Ví dụ: 012345678901' type='text'/>
+                        <CustomInput control={form.control} name="dateOfBirth" label="Ngày-tháng-năm sinh" placeholder='ngày-tháng-năm' type='text'/>
+                        <CustomInput control={form.control} name="cin" label="Căn cước công dân" placeholder='Ví dụ: 012345678901' type='text'/>
                         </>
                     )}
                     {/* EMAIL */}
