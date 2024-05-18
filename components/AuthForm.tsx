@@ -67,7 +67,7 @@ const AuthForm = ({type}: {type: string}) => {
                     email: data.email,
                     password: data.password,
                 });
-                // if we get a response back: means there is a user existed in DB, then process to the homepage of that person
+                // if we get a response TRUE back: means there is a user existed in DB, then process to the homepage of that person
                 if(response){
                     router.push('/')
                 }
