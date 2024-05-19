@@ -96,9 +96,9 @@ const AuthForm = ({type}: {type: string}) => {
                 {/* if (we have an user):: Link Account
                     else if (type === 'sign-in'){'Sign in' : 'Sign-up' } */}
                     {/* {user? 'Link Account' : (type === 'sign-in'? 'Sign In': 'Sign Up')} */}
-                {user? 'Link Account' : (type === 'sign-in'? 'Đăng Nhập': 'Đăng kí')}
+                {user? 'Kết nối với tài khoản' : (type === 'sign-in'? 'Đăng Nhập': 'Đăng kí')}
                 <p className="text-16 font-normal text-gray-500 mt-2">
-                    {user? 'Link your account to get started' : "Vui lòng nhập thông tin của bạn"}
+                    {user? 'Kết nối với tài khoản của bạn để bắt đầu' : "Vui lòng nhập thông tin của bạn"}
                 </p>
             </h1>
         </div>
