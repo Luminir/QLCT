@@ -50,3 +50,7 @@ npx shadcn-ui@latest add sheet
 npx shadcn-ui@latest add form
 
 npx shadcn-ui@latest add form button input
+
+npm install node-appwrite
+
+npx @sentry/wizard@latest -i nextjs (y y saas.io y and ok to all default options)
