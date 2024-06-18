@@ -3,11 +3,11 @@
 import { ID } from "node-appwrite";
 import { createSessionClient, createAdminClient } from "../server/appwrite"
 import { cookies } from "next/headers";
-import { encryptId, parseStringify } from "../utils";
+import { encryptId, extractCustomerIdFromUrl, parseStringify } from "../utils";
 import { CountryCode, ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum, Products } from "plaid";
 import { plaidClient } from "@/lib/plaid";
 import { revalidatePath } from "next/cache";
-import { addFundingSource } from "./dwolla.actions";
+import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
 
 const {
   APPWRITE_DATABASE_ID: DATABASEY_ID,
@@ -18,13 +18,44 @@ const {
 export const signUp = async (userDat: SignUpParams) =>{
   // destructing SignUpParams
   const { email, password, firstName, lastName } = userDat;
+  let newUserAccount;
     try {
         // Create a user account
         //  This method takes the email and password as arguments and returns a session object. We then set the session secret in a cookie (and redirect the user to the account page).
-        const { account } = await createAdminClient();
+        const { account, database } = await createAdminClient();
 
         // create an account by taking Admin power to create
-        const newUserAccount = await account.create(ID.unique(), email, password, `${lastName} ${firstName}`); // Tên tiếng Việt
+        newUserAccount = await account.create(ID.unique(), email, password, `${lastName} ${firstName}`); // Tên tiếng Việt
+
+        if(!newUserAccount){
+          throw new Error('Error trong lỗi tạo USER/ creating user')
+        }
+
+        // dwollaCustomerUrl - payment processor
+        const dwollaCustomerUrl = await createDwollaCustomer({
+          ...userDat,
+          type: 'personal',
+        });
+
+        if(!dwollaCustomerUrl){
+          throw new Error('Error lỗi TẠO dwolla customer')
+        }
+
+        const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
+
+        // fetch the user's account info to the OFFICIAL DATABASE
+        const newUser = await database.createDocument(
+          DATABASEY_ID!,
+          USERY_COLLECTION_ID!,
+          ID.unique(),
+          {
+            ...userDat,
+            userId: newUserAccount.$id,
+            dwollaCustomerId,
+            dwollaCustomerUrl,
+          }
+        )
+
         const session = await account.createEmailPasswordSession(email, password);
       
         cookies().set("appwrite-session", session.secret, {
@@ -36,7 +67,7 @@ export const signUp = async (userDat: SignUpParams) =>{
 
         // we declare this function in lib/utils.ts
         // In nextJS we cannot pass large OBJECT through server action, that's why we stringnify first
-        return parseStringify(newUserAccount);
+        return parseStringify(newUser);
       
     } catch (err) {
         console.log("Error ", err);
