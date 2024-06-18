@@ -199,14 +199,16 @@ export const getTransactionStatus = (date: Date) => {
 export const authFormSchema = (type: string) => z.object({
   // if z IS email then true
   // đăng nhập
-  email: z.string().email({message: "Email không hợp lệ"}),
-  password:z.string().min(8, {message: "Mật khẩu ít nhất 8 kí tự."}), // min password is 8 char
-  // đăng kí = đăng nhập + mấy cái ở dưới
-  // check type để không hiển thị, và 'đăng nhập' thay vì 'đăng kí'
-  firstName: type === 'sign-in' ? z.string().optional() : z.string().min(1, {message: "Tên không hợp lệ"}),
-  lastName: type === 'sign-in' ? z.string().optional() : z.string().min(1, {message: "Tên không hợp lệ"}),
-  address1: type === 'sign-in' ? z.string().optional() : z.string().min(5, {message: "Chưa đủ thông tin"}).max(70, {message: "Tới giới hạn số kí tự"}),
-  city: type === 'sign-in' ? z.string().optional() : z.string().min(2, {message: "không hợp lệ"}).max(21, {message: "Tới giới hạn số kí tự"}),
-  dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(4, {message: "Chưa đủ thông tin"}).regex(/^\d{2}-\d{2}-\d{4}$/, {message: "Ngày sinh phải theo định dạng DD-MM-YYYY"}),
-  cin: type === 'sign-in' ? z.string().optional() : z.string().min(12, {message: "Căn cước công dân có 12 kí tự"}).max(12, {message: "Căn cước công dân có 12 kí tự"}).regex(/^\d{12}$/, {message: "Căn cước công dân phải là số"}), // Citizen Identification Number
+  // sign up
+  firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+  lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+  address1: type === 'sign-in' ? z.string().optional() : z.string().max(50),
+  city: type === 'sign-in' ? z.string().optional() : z.string().max(50),
+  state: type === 'sign-in' ? z.string().optional() : z.string().min(2).max(2),
+  postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(6),
+  dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+  ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+  // both
+  email: z.string().email(),
+  password: z.string().min(8),
 })

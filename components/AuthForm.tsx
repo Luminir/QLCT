@@ -25,6 +25,7 @@ import { Loader2 } from 'lucide-react'
 import SignUp from '@/app/(auth)/dang-ki/page'
 import { useRouter } from 'next/navigation'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
+import PlaidLink from './PlaidLink'
 
 // // check if the user input correctly and fully or not
 // const formSchema = z.object({
@@ -104,13 +105,13 @@ const AuthForm = ({type}: {type: string}) => {
         </div>
         </header>
         {/* Check if we have access to the USER, to load out their info */}
-        {user ? (
+        {/* {user ? ( */}
             <div className='gap-4 flex flex-col'>
-                {/* PLAID link - AKA, link to user's BANK */}
+                <PlaidLink user={user} variant='primary'/>
             </div>
-        ):(
-            // if no info can be loaded, user must mannualy sign-in
-            // Using shadcn form
+        {/* ):( */}
+            {/* // if no info can be loaded, user must mannualy sign-in
+            // Using shadcn form */}
             <>
                 <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -124,9 +125,11 @@ const AuthForm = ({type}: {type: string}) => {
                         </div>
                         <CustomInput control={form.control} name="address1" label="Địa Chỉ" placeholder='Nhập địa chỉ của bạn' type='text'/>
                         <CustomInput control={form.control} name="city" label="Tỉnh/Thành Phố" placeholder='Ví dụ: Hà Nội' type='text'/>
-                        {/* <CustomInput control={form.control} name="postalCode" label="Mã bưu chính" placeholder='Ví dụ: 11101' type='number'/> */}
-                        <CustomInput control={form.control} name="dateOfBirth" label="Ngày-tháng-năm sinh" placeholder='ngày-tháng-năm' type='text'/>
-                        <CustomInput control={form.control} name="cin" label="Căn cước công dân" placeholder='Ví dụ: 012345678901' type='text'/>
+                        <CustomInput control={form.control} name='state' label="State" placeholder='Example: NY' type='text'/>
+                        <CustomInput control={form.control} name="postalCode" label="Mã bưu chính" placeholder='Ví dụ: 11101' type='number'/>
+                        <CustomInput control={form.control} name="dateOfBirth" label="Ngày-tháng-năm sinh" placeholder='năm-tháng-ngày' type='text'/>
+                        {/* <CustomInput control={form.control} name="cin" label="Căn cước công dân" placeholder='Ví dụ: 012345678901' type='text'/> */}
+                        <CustomInput control={form.control} name='ssn' label="SSN" placeholder='Example: 1234' type='number'/>
                         </>
                     )}
                     {/* EMAIL */}
@@ -153,7 +156,7 @@ const AuthForm = ({type}: {type: string}) => {
                     <Link href={type === 'sign-in' ? '/dang-ki' : '/dang-nhap'} className='form-link'>{type === 'sign-in' ? 'Đăng kí' : 'Đăng nhập'}</Link>
                 </footer>
             </>
-        )}
+        {/* )} */}
     </section>
   )
 }
