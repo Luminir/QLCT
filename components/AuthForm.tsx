@@ -117,13 +117,13 @@ const AuthForm = ({type}: {type: string}) => {
         </div>
         </header>
         {/* Check if we have access to the USER, to load out their info */}
-        {/* {user ? ( */}
+        {user ? (
             <div className='gap-4 flex flex-col'>
                 <PlaidLink user={user} variant='primary'/>
             </div>
-        {/* ):( */}
-            {/* // if no info can be loaded, user must mannualy sign-in
-            // Using shadcn form */}
+        ):(
+            // if no info can be loaded, user must mannualy sign-in
+            // Using shadcn form
             <>
                 <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -168,7 +168,7 @@ const AuthForm = ({type}: {type: string}) => {
                     <Link href={type === 'sign-in' ? '/dang-ki' : '/dang-nhap'} className='form-link'>{type === 'sign-in' ? 'Đăng kí' : 'Đăng nhập'}</Link>
                 </footer>
             </>
-        {/* )} */}
+        )}
     </section>
   )
 }

@@ -15,9 +15,9 @@ const {
   APPWRITE_BANK_COLLECTION_ID: BANKY_COLLECTION_ID,
 } = process.env;
 
-export const signUp = async (userDat: SignUpParams) =>{
+export const signUp = async ({password, ...userDat}: SignUpParams) =>{
   // destructing SignUpParams
-  const { email, password, firstName, lastName } = userDat;
+  const { email, firstName, lastName } = userDat;
   let newUserAccount;
     try {
         // Create a user account
@@ -115,7 +115,7 @@ export const createLinkToken = async(user: User) => {
   try {
     const tokenParams = {
       user: {client_user_id: user.$id},
-      client_name: user.name,
+      client_name: `${user.lastName} ${user.firstName}`,
       products: ['auth'] as Products[],
       language: 'en',
       country_codes: ['US'] as CountryCode[],

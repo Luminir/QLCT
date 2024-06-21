@@ -54,3 +54,9 @@ npx shadcn-ui@latest add form button input
 npm install node-appwrite
 
 npx @sentry/wizard@latest -i nextjs (y y saas.io y and ok to all default options)
+
+npm install react-plaid-link
+
+npm install plaid
+
+npm install dwolla-v2
