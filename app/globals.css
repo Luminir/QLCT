@@ -118,7 +118,7 @@
   }
 
   .total-balance {
-    @apply flex w-full items-center gap-4 rounded-xl border border-gray-200 p-4 shadow-chart sm:gap-6 sm:p-6;
+    @apply flex w-full items-center gap-4 border rounded-xl border-gray-400 p-4 shadow-chart shadow-xl sm:gap-6 sm:p-6;
   }
 
   .total-balance-chart {
@@ -238,9 +238,13 @@
     @apply gap-[18px] flex p-4 transition-all border bg-blue-25 border-transparent;
   }
 
-  /* Category Badge */
-  .category-badge {
+  /* Status Badge */
+  .status-badge {
     @apply flex-center truncate w-fit gap-1 rounded-2xl border-[1.5px] py-[2px] pl-1.5 pr-2;
+  }
+ /* Category Badge */
+  .category-badge {
+    @apply flex-center truncate w-fit gap-1 rounded-lg border-[1.5px] pl-2 pr-2 py-1;
   }
 
   .banktab-item {

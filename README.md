@@ -60,3 +60,7 @@ npm install react-plaid-link
 npm install plaid
 
 npm install dwolla-v2
+
+npx shadcn-ui@latest add tabs
+
+npx shadcn-ui@latest add table

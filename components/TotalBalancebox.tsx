@@ -23,6 +23,7 @@ const TotalBalancebox = ({accounts= [], totalBanks, totalCurrentBalance}: TotlaB
                 <div className='total-balance-amount flex-center gap-2'>
                 <AnimatedCounter amount={totalCurrentBalance}/>
                     {/* Thêm VND và dấu phẩy sau các hàng trăm */}
+                    {/* chuyển thành usd format */}
                     {/* {formatAmount(totalCurrentBalance)} */}
                 </div>
             </div>
