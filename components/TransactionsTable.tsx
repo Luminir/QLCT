@@ -84,12 +84,12 @@ const TransactionsTable = ({transactions}: TransactionTableProps) => {
         <Table>
       <TableHeader className=' bg-green-300'>
         <TableRow>
-          <TableHead className="px-2">Transaction</TableHead>
-          <TableHead className="px-2">Amount</TableHead>
-          <TableHead className="px-2">Status</TableHead>
-          <TableHead className="px-2 max-md:hidden">Date</TableHead>
-          <TableHead className="px-2 max-md:hidden">Channel</TableHead>
-          <TableHead className="px-2">Category</TableHead>
+          <TableHead className="px-1">Transaction</TableHead>
+          <TableHead className="px-1">Amount</TableHead>
+          <TableHead className="px-1">Status</TableHead>
+          <TableHead className="px-1 max-md:hidden">Date</TableHead>
+          <TableHead className="px-1 max-md:hidden">Channel</TableHead>
+          <TableHead className="px-1">Category</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -99,9 +99,9 @@ const TransactionsTable = ({transactions}: TransactionTableProps) => {
             const isDebit = transaction.type === 'debit';
             const isCredit = transaction.type === 'credit';
             return(
-                <TableRow key={transaction.$id} className={`${isDebit || amount[0] === '-' ? 'bg-[#e4a494]' : 'bg-[#97e8b4]'} !over:bg-none !border-b-DEFAULT`}>
+                <TableRow key={transaction.$id} className={`${isDebit || amount[0] === '-' ? 'bg-[#e4a494]' : 'bg-[#97e8b4]'} !over:bg-none rounded-lg !border-b-DEFAULT`}>
                     {/* Transactions */}
-                    <TableCell className='max-w-[250px] pl-2 pr-10'>
+                    <TableCell className='max-w-[225px] pl-1.5 pr-10'>
                         <div className='flex items-center gap-3'>
                             <h1 className='text-14 truncate '>
                                 {removeSpecialCharacters(transaction.name)}
@@ -109,23 +109,23 @@ const TransactionsTable = ({transactions}: TransactionTableProps) => {
                         </div>
                     </TableCell>
                     {/* Amount */}
-                    <TableCell className={`pl-2 pr-10 font-semibold ${isDebit || amount[0] === '-' ? ' text-red-600' : 'text-green-600'}`}>
+                    <TableCell className={`pl-2 pr-8 font-semibold ${isDebit || amount[0] === '-' ? ' text-red-600' : 'text-green-600'}`}>
                         {isDebit ? `-${amount}` : isCredit ? amount : amount}
                     </TableCell>
 
-                    <TableCell className='pl-2 pr-10'>
+                    <TableCell className='pl-1.5 pr-8'>
                         <StatusBadge category={status} />
                     </TableCell>
 
-                    <TableCell className='pl-2 pr-10 min-w-32 max-md:hidden'>
+                    <TableCell className='pl-1.5 pr-8 min-w-32 max-md:hidden'>
                         {formatDateTime(new Date(transaction.date)).dateTime}
                     </TableCell>
 
-                    <TableCell className='pl-2 pr-10 min-w-24 max-md:hidden'>
+                    <TableCell className='pl-1.5 pr-8 min-w-24 max-md:hidden'>
                         {transaction.paymentChannel}
                     </TableCell>
 
-                    <TableCell className='pl-2 pr-10'>
+                    <TableCell className='pl-1.5 pr-8'>
                         <CategoryBadge category={transaction.category} />
                     </TableCell>
                 </TableRow>
