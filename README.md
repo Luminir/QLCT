@@ -64,3 +64,5 @@ npm install dwolla-v2
 npx shadcn-ui@latest add tabs
 
 npx shadcn-ui@latest add table
+
+npx shadcn-ui@latest add textarea select

@@ -15,7 +15,7 @@ const Home = async ({searchParams: {id, page}}: SearchParamProps) => {
   if(!accounts){
     return;
   }
-
+ // returning the accounts' data
   const accountsData = accounts?.data;
   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
   
