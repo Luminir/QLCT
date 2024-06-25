@@ -1,4 +1,5 @@
 import HeaderBox from '@/components/HeaderBox'
+import { Pagination } from '@/components/Pagination';
 import TransactionsTable from '@/components/TransactionsTable';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
@@ -20,6 +21,13 @@ const LichSuGiaoDich = async ({searchParams: { id, page}}: SearchParamProps) => 
   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
   
   const account = await getAccount({appwriteItemId})
+
+  // caculate when to show pagination:
+  const rowsPerPage = 10; // show 10 rows/page
+  const totalPages = Math.ceil(account?.transactions.length/ 10); // how many page we MIGHT have
+  const indexOfLastTransaction = currentPage * rowsPerPage; // know which page you r on
+  const indexOfFirstTransaction = indexOfLastTransaction - rowsPerPage;
+  const currentTransaction = account?.transactions.slice(indexOfFirstTransaction, indexOfLastTransaction); // show the data of current page, only 10, not more
   return (
     <div className='transactions'> 
       <div className="transactions-header">
@@ -45,7 +53,14 @@ const LichSuGiaoDich = async ({searchParams: { id, page}}: SearchParamProps) => 
         </div>
 
         <section className=" w-full flex flex-col gap-6">
-          <TransactionsTable transactions={account?.transactions} />
+          <TransactionsTable transactions={currentTransaction} />
+          {/* current page = page */}
+                {/* only show pagination button when there are more than 1 page */}
+                {totalPages > 1 && (
+                  <div className="my-3">
+                    <Pagination totalPages={totalPages} page={currentPage} />
+                  </div>
+          )}
         </section>
       </div>
     </div>

@@ -4,8 +4,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BankTabItem } from './BankTabItem'
 import BankInfo from './BankInfo'
 import TransactionsTable from './TransactionsTable'
+import { Pagination } from './Pagination'
 
 const RecentTransactions = ({accounts, transactions= [], appwriteItemId, page = 1}: RecentTransactionsProps) => {
+  // caculate when to show pagination:
+  const rowsPerPage = 10; // show 10 rows/page
+  const totalPages = Math.ceil(transactions.length/ 10); // how many page we MIGHT have
+  const indexOfLastTransaction = page * rowsPerPage; // know which page you r on
+  const indexOfFirstTransaction = indexOfLastTransaction - rowsPerPage;
+  const currentTransaction = transactions.slice(indexOfFirstTransaction, indexOfLastTransaction); // show the data of current page, only 10, not more
+
   return (
     <>
         <section className='recent-transactions'>
@@ -31,7 +39,15 @@ const RecentTransactions = ({accounts, transactions= [], appwriteItemId, page = 
             {accounts.map((account: Account) => (
               <TabsContent value={account.appwriteItemId} key={account.id} className=' space-y-4'>
                 <BankInfo account={account} appwriteItemId={appwriteItemId} type='full' />
-                <TransactionsTable transactions={transactions} />
+                <TransactionsTable transactions={currentTransaction} />
+
+                {/* current page = page */}
+                {/* only show pagination button when there are more than 1 page */}
+                {totalPages > 1 && (
+                  <div className="my-3">
+                    <Pagination totalPages={totalPages} page={page} />
+                  </div>
+                )}
               </TabsContent>
             ))}
           </Tabs>
