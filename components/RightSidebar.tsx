@@ -2,8 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import BankCard from './BankCard'
+import { countTransactionCategories } from '@/lib/utils'
+import Category from './Category'
 
 const RightSidebar = ({user, transactions, banks}: RightSidebarProps) => {
+    // COUNT how much we spend
+    const categories: CategoryCount[] = countTransactionCategories(transactions);
   return (
     <aside className='right-sidebar'>
         <section className='flex flex-col pb-8'>
@@ -62,6 +66,15 @@ const RightSidebar = ({user, transactions, banks}: RightSidebarProps) => {
                     {/* if we have a SECOND bank */}
                 </div>
             )}
+            <div className=" mt-10 flex flex-1 flex-col gap-6">
+                <h2 className=' header-2'>Chi tiêu nhiều nhất:</h2>
+                <div className=" space-y-5">
+                    {/* know how much you spend */}
+                    {categories.map((category, i) => (
+                        <Category key={category.name} category={category}/>
+                    ))}
+                </div>
+            </div>
         </section>
     </aside>
   )

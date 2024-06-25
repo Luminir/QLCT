@@ -66,3 +66,5 @@ npx shadcn-ui@latest add tabs
 npx shadcn-ui@latest add table
 
 npx shadcn-ui@latest add textarea select
+
+npx shadcn-ui@latest add progress 
