@@ -79,6 +79,29 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
 }
 
 const TransactionsTable = ({transactions}: TransactionTableProps) => {
+// Initialize total variables
+let totalSpent: number = 0.00;
+let totalReceived: number = 0.00;
+
+// Iterate through transactions
+transactions.forEach(transaction => {
+    const amountNumber = typeof transaction.amount === 'number' ? transaction.amount : parseFloat(transaction.amount); // Convert to number
+
+    if (!isNaN(amountNumber)) { // Ensure it's a valid number
+      // console.log(amountNumber)
+        if (amountNumber <= 0) { // when SPEND $
+            totalSpent += amountNumber;
+        } else if (amountNumber > 0) { // when RECEIVE $
+            totalReceived += amountNumber;
+        }
+    } else {
+        console.warn(`Invalid amount detected: ${transaction.amount}`);
+    }
+});
+
+// Output the totals
+// console.log(`Total spent: $${totalSpent}`);
+// console.log(`Total received: $${totalReceived}`);
   return (
     <div>
         <Table>

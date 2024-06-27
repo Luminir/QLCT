@@ -336,3 +336,8 @@ declare interface CustomInput_test{
   placeholder: string;
   type: string;
 }
+
+declare interface AmountCategory{
+  category: CategoryCount;
+  transactions: Transaction[];
+}

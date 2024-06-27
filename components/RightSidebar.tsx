@@ -4,6 +4,9 @@ import Image from 'next/image'
 import BankCard from './BankCard'
 import { countTransactionCategories } from '@/lib/utils'
 import Category from './Category'
+import AmountCategory from './AmountCategory'
+import AmountCategoryReceived from './AmountCategoryReceived'
+import AmountCategorySpent from './AmountCategorySpent'
 
 const RightSidebar = ({user, transactions, banks}: RightSidebarProps) => {
     // COUNT how much we spend
@@ -69,9 +72,33 @@ const RightSidebar = ({user, transactions, banks}: RightSidebarProps) => {
             <div className=" mt-10 flex flex-1 flex-col gap-6">
                 <h2 className=' header-2'>Chi tiêu nhiều nhất:</h2>
                 <div className=" space-y-5">
-                    {/* know how much you spend */}
+                    {/* know WHAT you spend */}
                     {categories.map((category, i) => (
                         <Category key={category.name} category={category}/>
+                    ))}
+                </div>
+                <div className=" space-y-2">
+                    <p className='header-1'>How much spend:</p>
+                    {/* know how much you spend */}
+                    {categories.map((category, i) => (
+                        // create customize category, rename to <AmountCategory/> prop: category too / prop: transaction: transactionProps(line 66)
+                        <AmountCategory key={category.name} category={category} transactions={transactions}  />
+                    ))}
+                </div>
+                <div className=" space-y-2">
+                    <p className='header-1'>Amount received:</p>
+                    {/* know how much you receive FROM BEGINNING */}
+                    {categories.map((category, i) => (
+                        // create customize category, rename to <AmountCategory/> prop: category too / prop: transaction: transactionProps(line 66)
+                        <AmountCategoryReceived key={category.name} category={category} transactions={transactions}  />
+                    ))}
+                </div>
+                <div className=" space-y-2">
+                    <p className='header-1'>Amount Spent:</p>
+                    {/* know how much you spend FROM BEGINNING*/}
+                    {categories.map((category, i) => (
+                        // create customize category, rename to <AmountCategory/> prop: category too / prop: transaction: transactionProps(line 66)
+                        <AmountCategorySpent key={category.name} category={category} transactions={transactions}  />
                     ))}
                 </div>
             </div>

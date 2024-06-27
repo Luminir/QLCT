@@ -5,6 +5,7 @@ import { BankTabItem } from './BankTabItem'
 import BankInfo from './BankInfo'
 import TransactionsTable from './TransactionsTable'
 import { Pagination } from './Pagination'
+import { countTotalAmountEachCard } from '@/lib/actions/counting.actions'
 
 const RecentTransactions = ({accounts, transactions= [], appwriteItemId, page = 1}: RecentTransactionsProps) => {
   // caculate when to show pagination:
@@ -14,6 +15,10 @@ const RecentTransactions = ({accounts, transactions= [], appwriteItemId, page = 
   const indexOfFirstTransaction = indexOfLastTransaction - rowsPerPage;
   const currentTransaction = transactions.slice(indexOfFirstTransaction, indexOfLastTransaction); // show the data of current page, only 10, not more
 
+  // count total amount i spent from the beginning of time
+  const {totalAmountSpent, totalAmountReceived} = countTotalAmountEachCard({transactions})
+  console.log(`Total spent: $${totalAmountSpent}`);
+  console.log(`Total received: $${totalAmountReceived}`);
   return (
     <>
         <section className='recent-transactions'>
