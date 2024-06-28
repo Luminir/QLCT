@@ -341,3 +341,7 @@ declare interface AmountCategory{
   category: CategoryCount;
   transactions: Transaction[];
 }
+
+declare interface AmountTotalProps{
+  transactions: Transaction[];
+}
