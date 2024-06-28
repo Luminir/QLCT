@@ -5,7 +5,10 @@ export const countTotalAmountEachCard = ({transactions}: TransactionTableProps) 
     let totalSpent: number = 0.00;
     let totalReceived: number = 0.00;
     transactions.forEach((transaction) => {
-    const amountNumber = typeof transaction.amount === 'number' ? transaction.amount : parseFloat(transaction.amount); // Convert to number
+    // if it number ? number:YES : (notNumber ? does it have (-) ? -number : (does it have .category=debit ? yes : no /
+    const amountNumber = typeof transaction.amount === 'number' ? transaction.amount : (transaction.amount as string).includes('-') ? 
+                            0 - parseFloat(transaction.amount) : transaction.type === 'debit' ?
+                            0 - parseFloat(transaction.amount) : parseFloat(transaction.amount); // Convert to number
 
     if (!isNaN(amountNumber)) { // Ensure it's a valid number
       // console.log(amountNumber)
@@ -46,9 +49,9 @@ export const countTotalAmountCategory = ({transactions}: TransactionTableProps) 
         transaction.category === 'Transfer' ||
         transaction.category === 'Payment'
     ).forEach((transaction) => {
-        // if it number ? number:YES : (notNumber ? does it have (-) ? -number : (does it have .category=Transfer ? yes : no /
+        // if it number ? number:YES : (notNumber ? does it have (-) ? -number : (does it have .category=debit ? yes : no /
         const amountNumber = typeof transaction.amount === 'number' ? transaction.amount : (transaction.amount as string).includes('-') ? 
-                            0 - parseFloat(transaction.amount) : transaction.category === 'Transfer'?
+                            0 - parseFloat(transaction.amount) : transaction.type === 'debit' ?
                             0 - parseFloat(transaction.amount) : parseFloat(transaction.amount); // Convert to number
         // console.log(amountNumber)
         if (!isNaN(amountNumber)) { // Ensure it's a valid number

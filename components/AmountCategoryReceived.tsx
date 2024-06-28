@@ -30,6 +30,11 @@ const AmountCategoryReceived = ({category, transactions}: AmountCategory) => {
     const normalizedCategoryName = category.name.replace(/ and /g, "And"); // Remove spaces to match keys
     const categoryReceivedAmount = parseFloat(totalCategoryReceived[normalizedCategoryName as keyof typeof totalCategoryReceived]); // turn string to number by parseFloat
 
+    // If categoryReceivedAmount is 0, do not render the component
+    if (categoryReceivedAmount === 0) {
+        return null;
+    }
+    
     // total Amount received:
     const {totalAmountReceived} = countTotalAmountEachCard({transactions});
     const totalAmountReceivedNumber = parseFloat(totalAmountReceived);
