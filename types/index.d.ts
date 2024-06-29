@@ -345,3 +345,9 @@ declare interface AmountCategory{
 declare interface AmountTotalProps{
   transactions: Transaction[];
 }
+
+declare interface TotalAmountBoxProps{
+  // user: User;
+  transactions: Transaction[];
+  // banks: Bank[] & Account[];
+}

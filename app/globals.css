@@ -124,6 +124,19 @@
   .total-balance {
     @apply flex w-full items-center gap-4 border rounded-xl border-gray-400 p-4 shadow-chart shadow-xl sm:gap-6 sm:p-6;
   }
+  .total-amount {
+    @apply flex w-full gap-4 border rounded-xl xl:flex-1 border-gray-400 p-4 shadow-chart shadow-xl sm:gap-6 sm:p-6 !important;
+  }
+  @media (max-width: 900px) { /* Adjust 1024px to your desired medium breakpoint */
+    .custom-totalAmount-flex-smallScreen {
+      @apply flex flex-col w-full gap-4 border rounded-xl xl:flex-1 border-gray-400 p-4 shadow-chart shadow-xl sm:gap-6 sm:p-6 !important;
+    }
+  }
+  @media (min-width: 900px) { /* Adjust 1024px to your desired medium breakpoint */
+    .custom-totalAmount-bigScreen {
+      @apply flex w-full gap-4 border rounded-xl xl:flex-1 border-gray-400 p-4 shadow-chart shadow-xl sm:gap-6 sm:p-6 !important;
+    }
+  }
 
   .total-balance-chart {
     @apply flex size-full max-w-[100px] items-center sm:max-w-[120px];
