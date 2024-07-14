@@ -10,6 +10,11 @@ export const sidebarLinks = [
     label: "Tài khoản của tôi",
   },
   {
+    imgURL: "/icons/money-send.svg",
+    route: "/phan-tich",
+    label: "Phân tích",
+  },
+  {
     imgURL: "/icons/transaction.svg",
     route: "/lich-su-giao-dich",
     label: "Lịch sử giao dịch",
